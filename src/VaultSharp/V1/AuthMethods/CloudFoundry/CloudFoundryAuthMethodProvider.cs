@@ -43,5 +43,14 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
             return await _polymath.MakeVaultApiRequest<Secret<RoleList>>("/auth/" + mountPoint.Trim('/'),
                 "/roles/", new HttpMethod("LIST"));
         }
+
+        public async Task DeleteRoleAsync(string role, string mountPoint = AuthMethodDefaultPaths.CloudFoundry)
+        {
+            Checker.NotNull(role, "role");
+            Checker.NotNull(mountPoint, "mountPoint");
+            
+            await _polymath.MakeVaultApiRequest("/auth/" + mountPoint.Trim('/'),
+                "/roles/" + role.Trim('/'), HttpMethod.Delete);
+        }
     }
 }

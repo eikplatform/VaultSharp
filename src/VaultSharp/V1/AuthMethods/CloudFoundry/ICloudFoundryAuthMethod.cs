@@ -33,5 +33,13 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
         /// <param name="mountPoint"></param>
         /// <returns>A list of roles</returns>
         Task<Secret<RoleList>> ListRolesAsync(string mountPoint = AuthMethodDefaultPaths.CloudFoundry);
+
+        /// <summary>
+        /// Deletes a role.
+        /// </summary>
+        /// <param name="role">The name of the role</param>
+        /// <param name="mountPoint"></param>
+        /// <returns></returns>
+        Task DeleteRoleAsync(string role, string mountPoint = AuthMethodDefaultPaths.CloudFoundry);
     }
 }
