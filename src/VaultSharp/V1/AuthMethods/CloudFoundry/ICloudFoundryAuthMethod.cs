@@ -26,5 +26,12 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
         /// <param name="mountPoint"></param>
         /// <returns>Information about the role</returns>
         Task<Secret<RoleInfo>> GetRoleAsync(string role, string mountPoint = AuthMethodDefaultPaths.CloudFoundry);
+
+        /// <summary>
+        /// Returns registered CF roles.
+        /// </summary>
+        /// <param name="mountPoint"></param>
+        /// <returns>A list of roles</returns>
+        Task<Secret<RoleList>> ListRolesAsync(string mountPoint = AuthMethodDefaultPaths.CloudFoundry);
     }
 }

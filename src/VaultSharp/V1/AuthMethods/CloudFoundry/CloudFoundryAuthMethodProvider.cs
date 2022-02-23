@@ -26,7 +26,7 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
                 "/roles/" + role.Trim('/'), HttpMethod.Post, request);
         }
 
-        public async Task<Secret<RoleInfo>> GetRoleAsync(string role, string mountPoint = "cf")
+        public async Task<Secret<RoleInfo>> GetRoleAsync(string role, string mountPoint = AuthMethodDefaultPaths.CloudFoundry)
         {
             Checker.NotNull(mountPoint, "mountPoint");
             Checker.NotNull(role, "role");
@@ -34,6 +34,14 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
             return await _polymath.MakeVaultApiRequest<Secret<RoleInfo>>("/auth/" + mountPoint.Trim('/'),
                 "/roles/" + role.Trim('/'), HttpMethod.Get);
 
+        }
+
+        public async Task<Secret<RoleList>> ListRolesAsync(string mountPoint = AuthMethodDefaultPaths.CloudFoundry)
+        {
+            Checker.NotNull(mountPoint, "mountPoint");
+
+            return await _polymath.MakeVaultApiRequest<Secret<RoleList>>("/auth/" + mountPoint.Trim('/'),
+                "/roles/", new HttpMethod("LIST"));
         }
     }
 }
