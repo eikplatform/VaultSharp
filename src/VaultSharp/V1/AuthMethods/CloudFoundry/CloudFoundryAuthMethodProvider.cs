@@ -22,7 +22,7 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
             Checker.NotNull(mountPoint, "mountPoint");
             Checker.NotNull(role, "role");
             
-            await _polymath.MakeVaultApiRequest<Secret<object>>("/auth/" + mountPoint.Trim('/'),
+            await _polymath.MakeVaultApiRequest("/auth/" + mountPoint.Trim('/'),
                 "/roles/" + role.Trim('/'), HttpMethod.Post, request);
         }
 
