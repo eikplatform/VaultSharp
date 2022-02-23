@@ -30,6 +30,7 @@ namespace VaultSharp.V1.AuthMethods
             AppRole = new AppRoleAuthMethodProvider(_polymath);
             LDAP = new LDAPAuthMethodProvider(_polymath);
             Token = new TokenAuthMethodProvider(_polymath);
+            CloudFoundry = new CloudFoundryAuthMethodProvider(_polymath);
         }
 
         public IAliCloudAuthMethod AliCloud => throw new NotImplementedException();
@@ -40,7 +41,7 @@ namespace VaultSharp.V1.AuthMethods
 
         public IAzureAuthMethod Azure => throw new NotImplementedException();
 
-        public ICloudFoundryAuthMethod CloudFoundry => throw new NotImplementedException();
+        public ICloudFoundryAuthMethod CloudFoundry { get; }
 
         public IGitHubAuthMethod GitHub => throw new NotImplementedException();
 
