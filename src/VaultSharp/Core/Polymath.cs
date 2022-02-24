@@ -28,6 +28,7 @@ namespace VaultSharp.Core
         private readonly HttpClient _httpClient;
         private Lazy<Task<string>> _lazyVaultToken;
         private readonly IAuthMethodLoginProvider _authMethodLoginProvider;
+        private static readonly HttpMethod HttpMethodList = new HttpMethod("LIST");
 
         public VaultClientSettings VaultClientSettings { get; }
 
@@ -240,7 +241,7 @@ namespace VaultSharp.Core
                         break;
                     
                     case "LIST":
-                        httpRequestMessage = new HttpRequestMessage(new HttpMethod("LIST"), requestUri);
+                        httpRequestMessage = new HttpRequestMessage(HttpMethodList, requestUri);
                         break;
 
                     default:

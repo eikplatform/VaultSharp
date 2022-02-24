@@ -9,6 +9,7 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
     internal class CloudFoundryAuthMethodProvider : ICloudFoundryAuthMethod
     {
         private readonly Polymath _polymath;
+        private static readonly HttpMethod HttpMethodList = new HttpMethod("LIST");
 
         public CloudFoundryAuthMethodProvider(Polymath polymath)
         {
@@ -41,7 +42,7 @@ namespace VaultSharp.V1.AuthMethods.CloudFoundry
             Checker.NotNull(mountPoint, "mountPoint");
 
             return await _polymath.MakeVaultApiRequest<Secret<RoleList>>("/auth/" + mountPoint.Trim('/'),
-                "/roles/", new HttpMethod("LIST"));
+                "/roles/", HttpMethodList);
         }
 
         public async Task DeleteRoleAsync(string role, string mountPoint = AuthMethodDefaultPaths.CloudFoundry)
