@@ -15,5 +15,12 @@ namespace VaultSharp.V1.SecretsEngines.Transit
         /// </value>
         [JsonProperty("plaintext")]
         public string Base64EncodedPlainText { get; set; }
+
+        /// <summary>
+        /// Contains the individual error returned from Vault for a batched call.
+        /// </summary>
+        /// <value>The error.</value>
+        [JsonProperty("error")]
+        public string Error { get; set; }
     }
 }
